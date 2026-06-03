@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showcase - Pediatric Echocardiography Reporting System</title>
+  <style>
+    :root{
+      --primary:#0f5f6f;
+      --secondary:#178093;
+      --accent:#e9f7fa;
+      --border:#cfd8dc;
+      --dark:#263238;
+      --gold:#f7b731;
+      --success:#198754;
+      --danger:#b00020;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f8fa;color:var(--dark)}
+    header{background:linear-gradient(135deg,#0f5f6f,#178093);color:white;padding:34px 28px;text-align:center}
+    header h1{margin:0;font-size:30px;line-height:1.25}
+    header p{margin:10px auto 0;max-width:850px;font-size:16px;opacity:.95;line-height:1.5}
+    .demo-banner{background:#fff3cd;color:#5f4300;border-bottom:1px solid #ffe08a;padding:12px 18px;font-weight:bold;text-align:center}
+    .container{max-width:1250px;margin:auto;padding:20px}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+    .card{background:white;border:1px solid var(--border);border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.06);padding:20px}
+    .card h2,.card h3{margin-top:0;color:var(--primary)}
+    .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;list-style:none}
+    .feature-list li{background:#f8fbfc;border:1px solid #e3eef1;border-radius:10px;padding:10px 12px;font-weight:600}
+    .feature-list li::before{content:'✓ ';color:var(--success);font-weight:bold}
+    .pricing{background:linear-gradient(135deg,#ffffff,#e9f7fa);border:2px solid #c4e6ec}
+    .price{font-size:34px;font-weight:bold;color:var(--primary);margin:8px 0}
+    .btn-primary,.btn-secondary{display:inline-block;text-decoration:none;border:0;border-radius:9px;padding:11px 16px;font-weight:bold;cursor:pointer;margin:5px 6px 5px 0}
+    .btn-primary{background:var(--primary);color:white}
+    .btn-secondary{background:#eceff1;color:#263238}
+    .note{background:#f8f9fa;border-left:5px solid var(--primary);padding:12px;margin:12px 0;font-size:14px;line-height:1.45}
+    .layout{display:grid;grid-template-columns:430px 1fr;gap:18px;margin-top:18px}
+    .panel,.preview{background:white;border:1px solid var(--border);border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+    .panel{padding:16px;max-height:calc(100vh - 60px);overflow:auto}
+    .preview{padding:20px;overflow:auto}
+    fieldset{border:1px solid var(--border);border-radius:10px;margin:0 0 14px;padding:12px}
+    legend{font-weight:bold;color:var(--primary);padding:0 6px}
+    label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+    input,select,textarea{width:100%;padding:8px;border:1px solid #b0bec5;border-radius:7px;font-size:14px;background:white}
+    textarea{min-height:70px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+    .measure-card{border:1px solid #e0e0e0;border-radius:9px;padding:8px;background:#fbfdfe}
+    .measure-card label{margin-top:0}
+    .mini-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .other-note{margin-top:6px}
+    .btns{position:sticky;bottom:0;background:white;padding-top:10px;border-top:1px solid #e0e0e0;display:flex;gap:8px;flex-wrap:wrap}
+    button{border:0;border-radius:8px;padding:10px 12px;cursor:pointer;font-weight:bold}
+    .primary{background:var(--primary);color:white}
+    .secondary{background:#eceff1;color:#263238}
+    #report{background:white;color:#111;width:794px;min-height:1123px;margin:auto;padding:34px 42px;border:1px solid #e0e0e0;font-family:'Times New Roman',Times,serif;position:relative;overflow:hidden}
+    #report::before{content:'DEMO VERSION';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);font-size:90px;font-weight:bold;color:rgba(255,0,0,.18);border:7px solid rgba(255,0,0,.12);padding:20px 35px;z-index:0;pointer-events:none;white-space:nowrap}
+    #report>*{position:relative;z-index:1}
+    #report h2{text-align:center;margin:0 0 18px;text-transform:uppercase;font-size:21px;color:#000}
+    #report .topline{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;font-size:15px;margin-bottom:12px}
+    #report .section-title{margin-top:14px;font-weight:bold;font-size:16px;border-bottom:1px solid #777;padding-bottom:3px}
+    #report table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+    #report td,#report th{border:1px solid #999;padding:5px 6px;vertical-align:top}
+    #report th{background:#f2f2f2;text-align:left}
+    .impression-box{border:1px solid #999;padding:10px 14px;min-height:120px;margin-top:8px;white-space:pre-line;font-size:15px;line-height:1.45}
+    .signature{margin-top:44px;display:flex;justify-content:flex-end}
+    .sigbox{width:310px;text-align:left;border-top:1px solid #333;padding-top:8px;font-size:14px}
+    .muted{color:#666;font-size:12px}
+    footer{background:#0f5f6f;color:white;text-align:center;margin-top:25px;padding:22px;line-height:1.6}
+    footer h3{margin:0 0 5px}
+    @media(max-width:1000px){.hero-grid,.layout{grid-template-columns:1fr}.panel{max-height:none}#report{width:100%}.feature-list{grid-template-columns:1fr}}
+    @media print{body{background:white}.demo-banner,header,.container>.hero-grid,.panel,footer{display:none}.container{padding:0}.layout{display:block}.preview{border:0;box-shadow:none;padding:0}#report{border:0;width:100%;min-height:auto;padding:20mm}}
+  </style>
+</head>
+<body>
+  <div class="demo-banner">SHOWCASE VERSION — for feature demonstration only. Final reports and full access are available after subscription.</div>
+  <header>
+    <h1>Pediatric Echocardiography Reporting System</h1>
+    <p>Professional Pediatric Echocardiography Reporting Platform for Pediatric Cardiologists and Hospitals. This showcase page demonstrates the report workflow, dropdown findings, guided impression generation, and preview layout.</p>
+  </header>
+
+  <main class="container">
+    <section class="hero-grid">
+      <div class="card">
+        <h2>Features Available</h2>
+        <ul class="feature-list">
+          <li>Comprehensive Pediatric Echo Reporting</li>
+          <li>Segmental Anatomy Assessment</li>
+          <li>2D Measurements Entry</li>
+          <li>M-Mode Measurements</li>
+          <li>Doppler Measurements</li>
+          <li>Guided Impression Generation</li>
+          <li>Doctor Profile Management</li>
+          <li>Automatic PDF Report Generation</li>
+          <li>Hospital Branding Support</li>
+          <li>Subscription Based Access</li>
+        </ul>
+      </div>
+      <div class="card pricing">
+        <h2>Subscription Plan</h2>
+        <div class="price">₹2000 / month</div>
+        <p><b>Access includes:</b></p>
+        <ul>
+          <li>Unlimited pediatric echo reports</li>
+          <li>PDF export in subscribed version</li>
+          <li>Doctor profile storage</li>
+          <li>Future updates and feature improvements</li>
+        </ul>
+        <a href="03_payment_submission.html" class="btn-primary">Subscribe Now</a>
+        <a href="#demoForm" class="btn-secondary">View Demo</a>
+        <div class="note"><b>Note:</b> This showcase does not collect payment or upload files. Payment is handled in the separate payment submission page.</div>
+      </div>
+    </section>
+
+    <section class="layout" id="demoForm">
+      <section class="panel">
+        <div class="note"><b>Demo purpose:</b> Doctors can try dropdown findings, custom typing, impression generation, and report preview. PDF download is disabled in this showcase version.</div>
+
+        <fieldset>
+          <legend>Patient Details</legend>
+          <div class="row"><div><label>Name</label><input id="name" value="Sample Patient"></div><div><label>Age / Gender</label><input id="ageGender" value="6 years / Female"></div></div>
+          <div class="row"><div><label>ID No</label><input id="idNo" value="DEMO-001"></div><div><label>Date</label><input id="date" type="date"></div></div>
+          <label>Indication</label><textarea id="indication">Murmur evaluation</textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Segmental Anatomy</legend>
+          <p class="muted">Choose standard findings or use Other/custom remarks.</p>
+          <div class="row"><div class="measure-card"><label>Situs</label><select id="situs"><option>Situs Solitus</option><option>Situs Inversus</option><option>Situs Ambiguous</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="situsOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Cardiac position</label><select id="cardiacPosition"><option>Levocardia</option><option>Dextrocardia</option><option>Mesocardia</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="cardiacPositionOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Systemic veins</label><select id="systemicVeins"><option>Normal</option><option>LSVC present</option><option>Interrupted IVC</option><option>Abnormal systemic venous drainage</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="systemicVeinsOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Pulmonary veins</label><select id="pulmonaryVeins"><option>Normal</option><option>PAPVC</option><option>TAPVC</option><option>Pulmonary venous obstruction</option><option>Not well visualized</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="pulmonaryVeinsOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Inter-atrial septum</label><select id="ias"><option>Intact</option><option>PFO</option><option>ASD secundum</option><option>ASD primum</option><option>Sinus venosus ASD</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="iasOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Inter-ventricular septum</label><select id="ivs"><option>Intact</option><option>Perimembranous VSD</option><option>Muscular VSD</option><option>Inlet VSD</option><option>Outlet VSD</option><option>Multiple VSDs</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="ivsOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Right atrium</label><select id="ra"><option>Normal</option><option>Dilated</option><option>Hypoplastic</option><option>Abnormal</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="raOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Left atrium</label><select id="la"><option>Normal</option><option>Dilated</option><option>Hypoplastic</option><option>Abnormal</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="laOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Right ventricle</label><select id="rv"><option>Normal</option><option>Dilated</option><option>Hypertrophied</option><option>Hypoplastic</option><option>Reduced function</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="rvOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Left ventricle</label><select id="lv"><option>Normal</option><option>Dilated</option><option>Hypertrophied</option><option>Hypoplastic</option><option>Reduced systolic function</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="lvOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>AV connection</label><select id="avConnection"><option>Concordant</option><option>Discordant</option><option>Common AV connection</option><option>Ambiguous</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="avConnectionOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>VA connection</label><select id="vaConnection"><option>Concordant</option><option>Discordant</option><option>DORV</option><option>DOLV</option><option>Single outlet</option><option>Indeterminate</option><option>Other</option></select><input class="other-note" id="vaConnectionOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Tricuspid valve</label><select id="tricuspid"><option>Normal</option><option>Mild TR</option><option>Moderate TR</option><option>Severe TR</option><option>Tricuspid stenosis</option><option>Other</option></select><input class="other-note" id="tricuspidOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Mitral valve</label><select id="mitral"><option>Normal, no MR/MS</option><option>Mild MR</option><option>Moderate MR</option><option>Severe MR</option><option>Mitral stenosis</option><option>Other</option></select><input class="other-note" id="mitralOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Aortic valve</label><select id="aorticValve"><option>Tricuspid, no AS/AR</option><option>Bicuspid aortic valve</option><option>Mild AS</option><option>Moderate AS</option><option>Severe AS</option><option>Mild AR</option><option>Other</option></select><input class="other-note" id="aorticValveOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Aorta</label><select id="aorta"><option>Normal</option><option>Dilated aortic root</option><option>Coarctation suspected</option><option>Interrupted aortic arch</option><option>Hypoplastic arch</option><option>Other</option></select><input class="other-note" id="aortaOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Coronary arteries</label><select id="coronary"><option>Normal</option><option>Not well visualized</option><option>Anomalous origin suspected</option><option>Dilated coronary arteries</option><option>Other</option></select><input class="other-note" id="coronaryOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Pulmonary valve</label><select id="pulmonaryValve"><option>Normal, no PS/PR</option><option>Mild PS</option><option>Moderate PS</option><option>Severe PS</option><option>Mild PR</option><option>Other</option></select><input class="other-note" id="pulmonaryValveOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Main pulmonary artery</label><select id="mpaText"><option>Normal</option><option>Dilated</option><option>Hypoplastic</option><option>Stenotic</option><option>Other</option></select><input class="other-note" id="mpaTextOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Branch pulmonary arteries</label><select id="branchPa"><option>Confluent, good sized</option><option>RPA stenosis</option><option>LPA stenosis</option><option>Hypoplastic branch PAs</option><option>Other</option></select><input class="other-note" id="branchPaOther" placeholder="Type custom finding / remarks"></div></div>
+          <div class="row"><div class="measure-card"><label>Aortic arch</label><select id="arch"><option>Left sided, no CoA/PDA</option><option>Right aortic arch</option><option>CoA present</option><option>PDA present</option><option>Other</option></select><input class="other-note" id="archOther" placeholder="Type custom finding / remarks"></div><div class="measure-card"><label>Pericardium</label><select id="pericardium"><option>No pericardial effusion</option><option>Normal</option><option>Mild pericardial effusion</option><option>Moderate pericardial effusion</option><option>Severe pericardial effusion</option><option>Other</option></select><input class="other-note" id="pericardiumOther" placeholder="Type custom finding / remarks"></div></div>
+          <label>Others / Additional remarks</label><textarea id="others" placeholder="Type additional segmental anatomy findings"></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>2D Measurements [mm / z-score]</legend>
+          <p class="muted">Enter value and choose interpretation status.</p>
+          <div class="row3" id="measurementInputs"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>M Mode / Doppler</legend>
+          <div class="row3" id="mModeInputs"></div>
+          <label>Pulsed Doppler velocities</label><textarea id="doppler" placeholder="TV E, TV A, TV E/A, MV E, MV A, MV E/A..."></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Impression & Doctor Details</legend>
+          <p class="muted">Select relevant key findings and generate a draft impression. Final editing is available.</p>
+          <div class="row3">
+            <label><input type="checkbox" class="impCheck" value="SITUS SOLITUS, LEVOCARDIA" checked> Situs solitus, levocardia</label>
+            <label><input type="checkbox" class="impCheck" value="NORMAL SEGMENTAL ANATOMY" checked> Normal segmental anatomy</label>
+            <label><input type="checkbox" class="impCheck" value="NO INTRACARDIAC DEFECTS" checked> No intracardiac defects</label>
+            <label><input type="checkbox" class="impCheck" value="NO PDA / COA / LSVC" checked> No PDA / CoA / LSVC</label>
+            <label><input type="checkbox" class="impCheck" value="NORMAL BIVENTRICULAR FUNCTION" checked> Normal biventricular function</label>
+            <label><input type="checkbox" class="impCheck" value="NO EVIDENCE OF PAH" checked> No evidence of PAH</label>
+            <label><input type="checkbox" class="impCheck" value="NO PERICARDIAL EFFUSION" checked> No pericardial effusion</label>
+            <label><input type="checkbox" class="impCheck" value="ASD PRESENT"> ASD present</label>
+            <label><input type="checkbox" class="impCheck" value="VSD PRESENT"> VSD present</label>
+          </div>
+          <label>Additional impression line</label><input id="customImpressionLine" placeholder="Type additional key finding and click Add">
+          <div class="btns" style="position:static;border-top:0;margin-top:8px;padding-top:0">
+            <button type="button" class="secondary" onclick="addCustomImpressionLine()">Add Line</button>
+            <button type="button" class="primary" onclick="generateImpression()">Generate Impression</button>
+          </div>
+          <label>Impression</label><textarea id="impression"></textarea>
+          <label>Doctor Name</label><input id="doctorName" placeholder="Available in subscribed version">
+          <label>Designation / Qualification</label><input id="designation" placeholder="Available in subscribed version">
+          <label>Registration No</label><input id="regNo" placeholder="Available in subscribed version">
+        </fieldset>
+
+        <div class="btns">
+          <button class="primary" onclick="updateReport()">Update Preview</button>
+          <button class="primary" onclick="alert('PDF Download is available in the subscribed version.')">Download PDF Report</button>
+          <button class="secondary" onclick="window.print()">Print Sample</button>
+          <button class="secondary" onclick="resetForm()">Reset</button>
+        </div>
+      </section>
+
+      <section class="preview">
+        <div id="report">
+          <h2>Pediatric Echocardiography Report</h2>
+          <div class="topline">
+            <div><b>Name:</b> <span data-out="name"></span></div>
+            <div><b>Age / Gender:</b> <span data-out="ageGender"></span></div>
+            <div><b>ID No:</b> <span data-out="idNo"></span></div>
+            <div><b>Date:</b> <span data-out="date"></span></div>
+          </div>
+          <p><b>Indication:</b> <span data-out="indication"></span></p>
+          <div class="section-title">Segmental Anatomy</div>
+          <table><tbody id="segmentTable"></tbody></table>
+          <div class="section-title">2D Measurements [mm / z scores]</div>
+          <table><tbody id="measureTable"></tbody></table>
+          <p><b>BSA:</b> <span data-out="bsa"></span> &nbsp; <b>Height:</b> <span data-out="height"></span> &nbsp; <b>Weight:</b> <span data-out="weight"></span></p>
+          <div class="section-title">M Mode</div>
+          <table><tbody id="mModeTable"></tbody></table>
+          <div class="section-title">Pulsed Doppler velocities</div>
+          <p style="white-space:pre-line"><span data-out="doppler"></span></p>
+          <div class="section-title">IMPRESSION</div>
+          <div class="impression-box"><span data-out="impression"></span></div>
+          <div class="signature"><div class="sigbox"><b>Performed and Interpreted by:</b><br><span data-out="doctorName"></span><br><span data-out="designation"></span><br><span data-out="regNo"></span><br><br><span class="muted">Doctor may sign manually above this line.</span></div></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <h3>Interested?</h3>
+    <div>Contact Administrator through WhatsApp or Email for subscription activation.</div>
+    <div><b>WhatsApp:</b> +91 XXXXXXXXXX &nbsp; | &nbsp; <b>Email:</b> your@email.com</div>
+  </footer>
+
+<script>
+const measureDefs=[['tvAnn','TV annulus'],['mvAnn','MV annulus'],['aovAnn','AoV annulus'],['pvAnn','PV annulus'],['aoRoot','AO root'],['stj','STJ'],['aao','AAO'],['mpa','MPA'],['rpa','RPA'],['lpa','LPA'],['transArch','Trans arch'],['isthmus','Isthmus'],['bsa','BSA'],['height','Height'],['weight','Weight']];
+const mModeDefs=[['ivsd','IVSd'],['ivss','IVSs'],['lvidd','LVIDd'],['lvids','LVIDs'],['lvpwd','LVPWd'],['lvpws','LVPWs'],['lvef','LV EF %'],['lvfs','LV FS %'],['lvmass','LV MASS Gm'],['laao','LA/AO'],['tapse','TAPSE'],['mapse','MAPSE']];
+function makeMeasureInputs(containerId,defs){document.getElementById(containerId).innerHTML=defs.map(([id,label])=>`<div class="measure-card"><label>${label}</label><div class="mini-row"><input id="${id}" placeholder="Value / z-score"><select id="${id}Status"><option>Normal</option><option>Abnormal</option><option>Indeterminate</option><option>Other</option></select></div><input class="other-note" id="${id}Other" placeholder="Type other finding / comment"></div>`).join('')}
+makeMeasureInputs('measurementInputs',measureDefs);makeMeasureInputs('mModeInputs',mModeDefs);
+const simpleIds=['name','ageGender','idNo','date','indication','doppler','impression','doctorName','designation','regNo','bsa','height','weight'];
+function val(id){return document.getElementById(id)?.value||''}
+function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function row(label,value){return `<tr><th>${label}</th><td>${esc(value)}</td></tr>`}
+function pair(a,b,c,d){return `<tr><th>${a}</th><td>${esc(b)}</td><th>${c}</th><td>${esc(d)}</td></tr>`}
+function segmentValue(id){const selected=val(id);const custom=val(id+'Other').trim();if(selected==='Other')return custom||'Other';return custom?`${selected} (${custom})`:selected}
+function measureValue(id){const value=val(id);const status=val(id+'Status')||'Normal';const other=val(id+'Other');let text=value?`${value} — ${status}`:status;if(status==='Other'&&other)text=value?`${value} — ${other}`:other;else if(other)text+=` (${other})`;return text}
+function addCustomImpressionLine(){const input=document.getElementById('customImpressionLine');const text=(input.value||'').trim();if(!text)return;const current=val('impression').trim();document.getElementById('impression').value=current?current+'\n'+text.toUpperCase():text.toUpperCase();input.value='';updateReport()}
+function generateImpression(){const lines=Array.from(document.querySelectorAll('.impCheck:checked')).map(cb=>cb.value);const extra=(val('customImpressionLine')||'').trim();if(extra)lines.push(extra.toUpperCase());document.getElementById('impression').value=lines.join('\n');updateReport()}
+function updateReport(){simpleIds.forEach(id=>document.querySelectorAll(`[data-out="${id}"]`).forEach(e=>e.textContent=val(id)));
+ const seg=[['Situs','situs'],['Cardiac position','cardiacPosition'],['Systemic veins','systemicVeins'],['Pulmonary veins','pulmonaryVeins'],['Inter-atrial septum','ias'],['Right atrium','ra'],['Left atrium','la'],['Atrio-ventricular connection','avConnection'],['Tricuspid valve','tricuspid'],['Mitral valve','mitral'],['Inter-ventricular septum','ivs'],['Right ventricle','rv'],['Left ventricle','lv'],['Ventriculo-arterial connection','vaConnection'],['Aortic valve','aorticValve'],['Aorta','aorta'],['Coronary arteries','coronary'],['Pulmonary valve','pulmonaryValve'],['Main pulmonary artery','mpaText'],['Branch pulmonary arteries','branchPa'],['Aortic arch','arch'],['Pericardium','pericardium']];
+ document.getElementById('segmentTable').innerHTML=seg.map(([l,id])=>row(l,segmentValue(id))).join('')+row('Others',val('others'));
+ document.getElementById('measureTable').innerHTML=pair('TV annulus',measureValue('tvAnn'),'MV annulus',measureValue('mvAnn'))+pair('AoV annulus',measureValue('aovAnn'),'PV annulus',measureValue('pvAnn'))+pair('AO root',measureValue('aoRoot'),'STJ',measureValue('stj'))+pair('AAO',measureValue('aao'),'MPA',measureValue('mpa'))+pair('RPA',measureValue('rpa'),'LPA',measureValue('lpa'))+pair('Trans arch',measureValue('transArch'),'Isthmus',measureValue('isthmus'));
+ document.getElementById('mModeTable').innerHTML=pair('IVSd',measureValue('ivsd'),'IVSs',measureValue('ivss'))+pair('LVIDd',measureValue('lvidd'),'LVIDs',measureValue('lvids'))+pair('LVPWd',measureValue('lvpwd'),'LVPWs',measureValue('lvpws'))+pair('LV EF %',measureValue('lvef'),'LV FS %',measureValue('lvfs'))+pair('LV MASS Gm',measureValue('lvmass'),'LA/AO',measureValue('laao'))+pair('TAPSE',measureValue('tapse'),'MAPSE',measureValue('mapse'))}
+function resetForm(){if(confirm('Clear all entered values?'))location.reload()}
+window.addEventListener('input',updateReport);window.addEventListener('change',updateReport);window.onload=()=>{document.getElementById('date').valueAsDate=new Date();generateImpression();updateReport()};
+</script>
+</body>
+</html>
